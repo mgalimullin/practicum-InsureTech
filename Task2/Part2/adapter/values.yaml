@@ -1,0 +1,17 @@
+prometheus:
+  url: http://prometheus-server.default.svc.cluster.local
+  port: 80
+
+
+rules:
+  default: false
+
+  external:
+  - seriesQuery: 'http_requests_total{job!=""}'
+    resources:
+      namespaced: false
+
+    name:
+      as: "http_requests_per_second"
+
+    metricsQuery: 'sum(rate(http_requests_total{<<.LabelMatchers>>}[1m]))'
