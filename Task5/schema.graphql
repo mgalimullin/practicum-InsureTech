@@ -1,0 +1,49 @@
+"""
+Root query type
+"""
+type Query {
+  """
+  Get client by ID
+  """
+  client(id: ID!): Client
+}
+
+"""
+Client entity
+"""
+type Client {
+  id: ID!
+  name: String
+  age: Int
+
+  """
+  Client documents
+  """
+  documents: [Document!]
+
+  """
+  Client relatives
+  """
+  relatives: [Relative!]
+}
+
+"""
+Client document
+"""
+type Document {
+  id: ID!
+  type: String
+  number: String
+  issueDate: String
+  expiryDate: String
+}
+
+"""
+Client relative
+"""
+type Relative {
+  id: ID!
+  relationType: String
+  name: String
+  age: Int
+}
